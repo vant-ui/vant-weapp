@@ -46,7 +46,7 @@
     "@types/jest": "^27.0.2",
     "@vant/cli": "^4.0.0",
     "@vant/icons": "^3.0.1",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-insert": "^0.5.0",
     "gulp-less": "^5.0.0",
     "gulp-postcss": "^9.0.1",
