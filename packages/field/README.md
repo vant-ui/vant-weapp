@@ -309,6 +309,7 @@ Page({
 | bind:click-input | 点击输入区域时触发 | - |
 | bind:linechange | 输入框行数变化时调用，只对 textarea 有效 | event.detail = { height: 0, heightRpx: 0, lineCount: 0 } |
 | bind:keyboardheightchange | 键盘高度发生变化的时候触发此事件 | event.detail = { height: height, duration: duration } |
+| bind:nicknamereview `v1.11.5` | 用户昵称审核完毕后触发，仅在 type 为 "nickname" 时有效 | event.detail = { pass, timeout } |
 
 ### InputDetail
 

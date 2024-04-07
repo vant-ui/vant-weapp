@@ -29,4 +29,5 @@
   bindconfirm="onConfirm"
   bindlinechange="onLineChange"
   bindkeyboardheightchange="onKeyboardHeightChange"
+  bindnicknamereview="onBindNicknameReview"
 />
