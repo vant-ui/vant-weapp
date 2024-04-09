@@ -181,6 +181,9 @@ VantComponent({
 
           return;
         }
+        this.setData({
+          activeTab: 0,
+        })
       }
 
       this.setData({
