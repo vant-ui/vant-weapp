@@ -726,7 +726,6 @@ exports[`should render demo and match snapshot 1`] = `
                       bind:input="onInput"
                       bind:keyboardheightchange="onKeyboardHeightChange"
                       bind:linechange="onLineChange"
-                      bind:nicknamereview="onBindNicknameReview"
                       bind:tap="onClickInput"
                     />
                     <wx-view

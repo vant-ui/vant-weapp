@@ -254,7 +254,7 @@ Page({
 | label | 输入框左侧文本 | _string_ | - |
 | size | 单元格大小，可选值为 `large` | _string_ | - |
 | value | 当前输入的值 | _string \| number_ | - |
-| type | 可设置为任意原生类型, 如 `number` `idcard` `textarea` `digit` | _string_ | `text` |
+| type | 可设置为任意原生类型, 如 `number` `idcard` `textarea` `digit` `nickname` | _string_ | `text` |
 | fixed | 如果 type 为 `textarea` 且在一个 `position:fixed` 的区域，需要显示指定属性 fixed 为 true | _boolean_ | `false` |
 | focus | 获取焦点 | _boolean_ | `false` |
 | border | 是否显示内边框 | _boolean_ | `true` |
