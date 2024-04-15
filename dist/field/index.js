@@ -95,6 +95,9 @@ VantComponent({
         onKeyboardHeightChange(event) {
             this.$emit('keyboardheightchange', event.detail);
         },
+        onBindNicknameReview(event) {
+            this.$emit('nicknamereview', event.detail);
+        },
         emitChange(detail) {
             const { extraEventParams } = this.data;
             this.setData({ value: detail.value });

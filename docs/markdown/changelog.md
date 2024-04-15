@@ -1,4 +1,23 @@
 # 更新日志
+
+### [v1.11.5](https://github.com/youzan/vant-weapp/compare/v1.11.4...v1.11.5)
+
+`2024-04-15`
+
+**Bug Fixes**
+
+- Transition: 修复 observeDuration 方法未实现导致的报错 [#5743](https://github.com/youzan/vant-weapp/issues/5743)
+- van-stepper:  修复在设置 max 属性后 onChange 结果不受限制 [#5741](https://github.com/youzan/vant-weapp/issues/5741)
+
+**Feature**
+
+- input: 新增 nicknamereview 事件支持 [#5758](https://github.com/youzan/vant-weapp/issues/5758)
+
+**Document**
+
+- docs(quickstart): 删除不需要的引导步骤 [#5744](https://github.com/youzan/vant-weapp/pull/5744)
+
+
 ### [v1.11.4](https://github.com/youzan/vant-weapp/compare/v1.11.3...v1.11.4)
 
 `2024-01-22`

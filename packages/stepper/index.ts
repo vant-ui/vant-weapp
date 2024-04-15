@@ -161,13 +161,7 @@ VantComponent({
         return;
       }
 
-      let formatted = this.filter(value);
-
-      // limit max decimal length
-      if (isDef(this.data.decimalLength) && formatted.indexOf('.') !== -1) {
-        const pair = formatted.split('.');
-        formatted = `${pair[0]}.${pair[1].slice(0, this.data.decimalLength)}`;
-      }
+      let formatted = this.format(value);
 
       this.emitChange(formatted);
     },

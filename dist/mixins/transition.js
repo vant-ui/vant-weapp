@@ -21,7 +21,6 @@ export function transition(showDefaultValue) {
             duration: {
                 type: null,
                 value: 300,
-                observer: 'observeDuration',
             },
             name: {
                 type: String,

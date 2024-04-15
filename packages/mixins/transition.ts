@@ -23,7 +23,6 @@ export function transition(showDefaultValue: boolean) {
       duration: {
         type: null,
         value: 300,
-        observer: 'observeDuration',
       },
       name: {
         type: String,

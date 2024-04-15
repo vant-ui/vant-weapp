@@ -76,6 +76,7 @@ exports[`should render demo and match snapshot 1`] = `
                   bind:focus="onFocus"
                   bind:input="onInput"
                   bind:keyboardheightchange="onKeyboardHeightChange"
+                  bind:nicknamereview="onBindNicknameReview"
                   bind:tap="onClickInput"
                 />
                 <wx-view
@@ -187,6 +188,7 @@ exports[`should render demo and match snapshot 1`] = `
                   bind:focus="onFocus"
                   bind:input="onInput"
                   bind:keyboardheightchange="onKeyboardHeightChange"
+                  bind:nicknamereview="onBindNicknameReview"
                   bind:tap="onClickInput"
                 />
                 <wx-view
@@ -298,6 +300,7 @@ exports[`should render demo and match snapshot 1`] = `
                   bind:focus="onFocus"
                   bind:input="onInput"
                   bind:keyboardheightchange="onKeyboardHeightChange"
+                  bind:nicknamereview="onBindNicknameReview"
                   bind:tap="onClickInput"
                 />
                 <wx-view
@@ -409,6 +412,7 @@ exports[`should render demo and match snapshot 1`] = `
                   bind:focus="onFocus"
                   bind:input="onInput"
                   bind:keyboardheightchange="onKeyboardHeightChange"
+                  bind:nicknamereview="onBindNicknameReview"
                   bind:tap="onClickInput"
                 />
                 <wx-view
