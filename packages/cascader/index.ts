@@ -181,9 +181,6 @@ VantComponent({
 
           return;
         }
-        this.setData({
-          activeTab: 0,
-        })
       }
 
       this.setData({
@@ -193,6 +190,7 @@ VantComponent({
             selected: null,
           },
         ],
+        activeTab: 0,
       });
     },
     onClose() {
