@@ -38,6 +38,7 @@ VantComponent({
       value: '日期选择',
     },
     color: String,
+    extraColors: Array,
     show: {
       type: Boolean,
       observer(val) {
@@ -68,6 +69,14 @@ VantComponent({
         this.setData({ currentDate: val });
         this.scrollIntoView();
       },
+    },
+    defaultDateSelectedState: {
+      type: Array,
+      value: [] as number[],
+    },
+    selectedStateCount: {
+      type: Number,
+      value: 1,
     },
     allowSameDay: Boolean,
     type: {
@@ -145,6 +154,7 @@ VantComponent({
   data: {
     subtitle: '',
     currentDate: null as any,
+    currentDateSelectedState: [] as number[],
     scrollIntoView: '',
   },
 
@@ -158,9 +168,9 @@ VantComponent({
   },
 
   created() {
-    this.setData({
-      currentDate: this.getInitialDate(this.data.defaultDate),
-    });
+    this.setData({ currentDate: this.getInitialDate(this.data.defaultDate) });
+
+    this.resetCurrentDateSelectedState();
   },
 
   mounted() {
@@ -173,7 +183,24 @@ VantComponent({
   methods: {
     reset() {
       this.setData({ currentDate: this.getInitialDate(this.data.defaultDate) });
+      this.resetCurrentDateSelectedState();
       this.scrollIntoView();
+    },
+
+    resetCurrentDateSelectedState() {
+      const { currentDate } = this.data;
+
+      let currentDateSelectedState: number[] = [];
+      if (this.data.type === 'multiple') {
+        const currentDateArr = Array.isArray(currentDate)
+          ? currentDate
+          : [currentDate];
+        currentDateSelectedState = currentDateArr.map(
+          (item, index) => this.data.defaultDateSelectedState[index] || 1
+        );
+      }
+
+      this.setData({ currentDateSelectedState });
     },
 
     initRect() {
@@ -304,7 +331,13 @@ VantComponent({
       }
 
       let { date } = event.detail;
-      const { type, currentDate, allowSameDay } = this.data;
+      const {
+        type,
+        currentDate,
+        currentDateSelectedState,
+        selectedStateCount,
+        allowSameDay,
+      } = this.data;
 
       if (type === 'range') {
         // @ts-ignore
@@ -336,7 +369,14 @@ VantComponent({
         }
       } else if (type === 'multiple') {
         let selectedIndex: number;
-
+        console.log(
+          '111',
+          currentDate,
+          date,
+          currentDateSelectedState,
+          selectedStateCount,
+          this.data.extraColors
+        );
         // @ts-ignore
         const selected = currentDate.some((dateItem: number, index: number) => {
           const equal = compareDay(dateItem, date) === 0;
@@ -346,17 +386,43 @@ VantComponent({
           return equal;
         });
 
+        let newSelectedState = 1;
         if (selected) {
-          // @ts-ignore
-          const cancelDate = currentDate.splice(selectedIndex, 1);
-          this.setData({ currentDate });
-          this.unselect(cancelDate);
+          const selectedState = currentDateSelectedState[selectedIndex!] || 1;
+
+          if (selectedState < selectedStateCount) {
+            newSelectedState = selectedState + 1;
+            currentDateSelectedState[selectedIndex!] = newSelectedState;
+          } else {
+            // @ts-ignore
+            const cancelDate = currentDate.splice(selectedIndex, 1);
+            this.setData({ currentDate });
+            this.unselect(cancelDate);
+
+            newSelectedState = 0;
+            currentDateSelectedState.splice(selectedIndex!, 1);
+          }
         } else {
           // @ts-ignore
           this.select([...currentDate, date]);
+
+          newSelectedState = 1;
+          currentDateSelectedState.push(newSelectedState);
         }
+
+        this.setData({
+          currentDateSelectedState: [...currentDateSelectedState],
+        });
+        this.selectedStateChange(date, newSelectedState);
       } else {
         this.select(date, true);
+      }
+    },
+
+    selectedStateChange(dateArray, state) {
+      const date = dateArray[0];
+      if (date) {
+        this.$emit('selectedStateChange', copyDates(date), state);
       }
     },
 

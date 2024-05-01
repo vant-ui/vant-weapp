@@ -5,6 +5,8 @@ type Data = {
   type?: 'single' | 'multiple' | 'range';
   round?: boolean;
   color?: string;
+  extraColors?: string[];
+  selectedStateCount?: number;
   minDate?: number;
   maxDate?: number;
   maxRange?: any;
@@ -37,6 +39,7 @@ VantComponent({
     type: 'single',
     round: true,
     color: '',
+    extraColors: [] as string[],
     minDate: Date.now(),
     maxDate: new Date(
       new Date().getFullYear(),
@@ -95,6 +98,7 @@ VantComponent({
       this.setData({
         round: true,
         color: '',
+        extraColors: [] as string[],
         minDate: Date.now(),
         maxDate: new Date(
           new Date().getFullYear(),
@@ -146,6 +150,10 @@ VantComponent({
           break;
         case 'maxRange':
           data.maxRange = 3;
+          break;
+        case 'multipleSelectedState':
+          data.selectedStateCount = 3;
+          data.extraColors = ['#2baeb3', '#ff6e3c'];
           break;
       }
 
