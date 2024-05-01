@@ -492,6 +492,13 @@ VantComponent({
       }
       wx.nextTick(() => {
         // @ts-ignore
+        if (this.data.type === 'multiple' && this.data.selectedStateCount > 1) {
+          this.$emit('confirm', {
+            currentDate: copyDates(this.data.currentDate),
+            selectedState: this.data.currentDateSelectedState,
+          });
+          return;
+        }
         this.$emit('confirm', copyDates(this.data.currentDate));
       });
     },

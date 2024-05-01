@@ -142,6 +142,8 @@
   confirm-disabled-text="{{ confirmDisabledText }}"
   first-day-of-week="{{ firstDayOfWeek }}"
   selectedStateCount="{{ selectedStateCount }}"
+  defaultDate="{{ defaultDate }}"
+  defaultDateSelectedState="{{ defaultDateSelectedState }}"
   bind:confirm="onConfirm"
   bind:select="onSelect"
   bind:unselect="onUnselect"
