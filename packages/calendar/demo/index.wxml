@@ -109,7 +109,7 @@
     title="多个选中态"
     data-type="multiple"
     data-id="multipleSelectedState"
-    value="{{ computed.formatMultiple(date.selectMultiple) }}"
+    value="{{ computed.formatMultiple(date.multipleSelectedState) }}"
     bind:click="show"
   />
 </demo-block>

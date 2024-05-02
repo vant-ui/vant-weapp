@@ -494,8 +494,8 @@ VantComponent({
         // @ts-ignore
         if (this.data.type === 'multiple' && this.data.selectedStateCount > 1) {
           this.$emit('confirm', {
-            currentDate: copyDates(this.data.currentDate),
-            selectedState: this.data.currentDateSelectedState,
+            date: copyDates(this.data.currentDate),
+            state: [...this.data.currentDateSelectedState],
           });
           return;
         }

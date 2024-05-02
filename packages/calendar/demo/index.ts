@@ -67,10 +67,16 @@ VantComponent({
       console.log(event);
       this.setData({ showCalendar: false });
 
+      let value = Array.isArray(event.detail)
+        ? event.detail.map((date) => date.valueOf())
+        : event.detail.valueOf();
+
+      if (this.data.type === 'multiple' && this.data.selectedStateCount > 1) {
+        value = event.detail.date.map((date) => date.valueOf());
+      }
+
       this.setData({
-        [`date.${this.data.id}`]: Array.isArray(event.detail)
-          ? event.detail.map((date) => date.valueOf())
-          : event.detail.valueOf(),
+        [`date.${this.data.id}`]: value,
       });
     },
 
