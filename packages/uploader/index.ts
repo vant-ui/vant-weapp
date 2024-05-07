@@ -56,10 +56,6 @@ VantComponent({
       type: String,
       value: 'contain',
     },
-    videoReferrerPolicy: {
-      type: String,
-      value: 'no-referrer',
-    },
     imageFit: {
       type: String,
       value: 'scaleToFill',
