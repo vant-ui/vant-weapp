@@ -42,8 +42,8 @@
     "condition": false
   },
   "compileType": "miniprogram",
-  "libVersion": "3.4.1",
-  "appid": "wx5d23aa444995092b",
+  "libVersion": "2.6.5",
+  "appid": "wx1c01b35002d3ba14",
   "projectname": "vant-weapp",
   "condition": {
     "miniprogram": {
