@@ -190,6 +190,7 @@ VantComponent({
             selected: null,
           },
         ],
+        activeTab: 0,
       });
     },
     onClose() {
