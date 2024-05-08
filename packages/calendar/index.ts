@@ -73,6 +73,10 @@ VantComponent({
     defaultDateSelectedState: {
       type: Array,
       value: [] as number[],
+      observer(val) {
+        this.setData({ currentDateSelectedState: val });
+        this.scrollIntoView();
+      },
     },
     selectedStateCount: {
       type: Number,
@@ -168,9 +172,10 @@ VantComponent({
   },
 
   created() {
-    this.setData({ currentDate: this.getInitialDate(this.data.defaultDate) });
+    const currentDate = this.getInitialDate(this.data.defaultDate);
+    this.setData({ currentDate });
 
-    this.resetCurrentDateSelectedState();
+    this.resetCurrentDateSelectedState(currentDate);
   },
 
   mounted() {
@@ -182,14 +187,13 @@ VantComponent({
 
   methods: {
     reset() {
-      this.setData({ currentDate: this.getInitialDate(this.data.defaultDate) });
-      this.resetCurrentDateSelectedState();
+      const currentDate = this.getInitialDate(this.data.defaultDate);
+      this.setData({ currentDate });
+      this.resetCurrentDateSelectedState(currentDate);
       this.scrollIntoView();
     },
 
-    resetCurrentDateSelectedState() {
-      const { currentDate } = this.data;
-
+    resetCurrentDateSelectedState(currentDate) {
       let currentDateSelectedState: number[] = [];
       if (this.data.type === 'multiple') {
         const currentDateArr = Array.isArray(currentDate)
@@ -369,14 +373,6 @@ VantComponent({
         }
       } else if (type === 'multiple') {
         let selectedIndex: number;
-        console.log(
-          '111',
-          currentDate,
-          date,
-          currentDateSelectedState,
-          selectedStateCount,
-          this.data.extraColors
-        );
         // @ts-ignore
         const selected = currentDate.some((dateItem: number, index: number) => {
           const equal = compareDay(dateItem, date) === 0;
@@ -419,11 +415,8 @@ VantComponent({
       }
     },
 
-    selectedStateChange(dateArray, state) {
-      const date = dateArray[0];
-      if (date) {
-        this.$emit('selectedStateChange', copyDates(date), state);
-      }
+    selectedStateChange(date, state) {
+      this.$emit('selectedStateChange', { date: copyDates(date), state });
     },
 
     unselect(dateArray) {

@@ -106,7 +106,7 @@
 
   <van-cell
     is-link
-    title="多个选中态"
+    title="多个日期多个选中态"
     data-type="multiple"
     data-id="multipleSelectedState"
     value="{{ computed.formatMultiple(date.multipleSelectedState) }}"
@@ -151,5 +151,6 @@
   bind:opened="onOpened"
   bind:close="onClose"
   bind:closed="onClosed"
+  bind:selectedStateChange="onSelectedStateChange"
 >
 </van-calendar>

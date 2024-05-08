@@ -37,6 +37,7 @@ VantComponent({
       customRange: null,
       customDayText: [],
       customPosition: null,
+      multipleSelectedState: [],
     },
     type: 'single',
     round: true,
@@ -104,6 +105,10 @@ VantComponent({
       console.log('closed');
     },
 
+    onSelectedStateChange(event) {
+      console.log('selectedStateChange', event);
+    },
+
     resetSettings() {
       this.setData({
         round: true,
@@ -164,12 +169,12 @@ VantComponent({
         case 'multipleSelectedState':
           data.selectedStateCount = 3;
           data.extraColors = ['#2baeb3', '#ff6e3c'];
-          data.defaultDate = [
-            new Date(2024, 5, 10).getTime(),
-            new Date(2024, 4, 26).getTime(),
-            new Date(2024, 8, 10).getTime(),
-          ];
-          data.defaultDateSelectedState = [1, 2, 3];
+          // data.defaultDate = [
+          //   new Date(2024, 5, 10).getTime(),
+          //   new Date(2024, 4, 26).getTime(),
+          //   new Date(2024, 8, 10).getTime(),
+          // ];
+          // data.defaultDateSelectedState = [1, 2, 3];
           break;
       }
 
