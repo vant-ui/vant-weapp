@@ -7,6 +7,7 @@ interface VantComponentInstance {
     detail?: unknown,
     options?: WechatMiniprogram.Component.TriggerEventOption
   ) => void;
+  setView: (value: Record<string, any>, callback?: () => void) => void;
 }
 
 export type VantComponentOptions<

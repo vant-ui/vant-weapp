@@ -66,6 +66,20 @@ VantComponent({
     showClear: false,
   },
 
+  watch: {
+    value(this: WechatMiniprogram.Component.TrivialInstance, value) {
+      if (value !== this.value) {
+        this.setData({ innerValue: value });
+        this.value = value;
+
+        this.setShowClear();
+      }
+    },
+    clearTrigger() {
+      this.setShowClear();
+    },
+  },
+
   created() {
     this.value = this.data.value;
     this.setData({ innerValue: this.value });
@@ -204,7 +218,7 @@ VantComponent({
         showClear = hasValue && trigger;
       }
 
-      this.setData({ showClear });
+      this.setView({ showClear });
     },
 
     noop() {},
