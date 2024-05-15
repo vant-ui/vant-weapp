@@ -7,7 +7,7 @@ function getMark(date) {
 
 var ROW_HEIGHT = 64;
 
-function getDayStyle(type, index, date, rowHeight, color, firstDayOfWeek) {
+function getDayStyle(type, index, date, rowHeight, color, firstDayOfWeek, selectedState, extraColors) {
   var style = [];
   var current = getDate(date).getDay() || 7;
   var offset = current < firstDayOfWeek ? (7 - firstDayOfWeek + current) :
@@ -22,7 +22,7 @@ function getDayStyle(type, index, date, rowHeight, color, firstDayOfWeek) {
     style.push(['height', rowHeight + 'px']);
   }
 
-  if (color) {
+  if (color || extraColors.length > 0) {
     if (
       type === 'start' ||
       type === 'end' ||
@@ -30,8 +30,11 @@ function getDayStyle(type, index, date, rowHeight, color, firstDayOfWeek) {
       type === 'multiple-selected' ||
       type === 'multiple-middle'
     ) {
-      style.push(['background', color]);
-    } else if (type === 'middle') {
+      var bgColor = (extraColors || [])[selectedState - 2] || color;
+      if (bgColor) {
+        style.push(['background', bgColor]);
+      }
+    } else if (type === 'middle' && color) {
       style.push(['color', color]);
     }
   }

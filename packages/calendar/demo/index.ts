@@ -5,11 +5,15 @@ type Data = {
   type?: 'single' | 'multiple' | 'range';
   round?: boolean;
   color?: string;
+  extraColors?: string[];
+  selectedStateCount?: number;
   minDate?: number;
   maxDate?: number;
   maxRange?: any;
   position?: 'top' | 'right' | 'bottom' | 'left';
   formatter?: any;
+  defaultDate?: number | number[];
+  defaultDateSelectedState?: number[];
   showConfirm?: boolean;
   showCalendar?: boolean;
   tiledMinDate?: number;
@@ -33,10 +37,12 @@ VantComponent({
       customRange: null,
       customDayText: [],
       customPosition: null,
+      multipleSelectedState: [],
     },
     type: 'single',
     round: true,
     color: '',
+    extraColors: [] as string[],
     minDate: Date.now(),
     maxDate: new Date(
       new Date().getFullYear(),
@@ -46,6 +52,8 @@ VantComponent({
     maxRange: undefined,
     position: 'bottom',
     formatter: undefined,
+    defaultDate: [] as number | number[],
+    defaultDateSelectedState: [] as number[],
     showConfirm: false,
     showCalendar: false,
     tiledMinDate: new Date(2012, 0, 10).getTime(),
@@ -60,10 +68,16 @@ VantComponent({
       console.log(event);
       this.setData({ showCalendar: false });
 
+      let value = Array.isArray(event.detail)
+        ? event.detail.map((date) => date.valueOf())
+        : event.detail.valueOf();
+
+      if (this.data.type === 'multiple' && this.data.selectedStateCount > 1) {
+        value = event.detail.date.map((date) => date.valueOf());
+      }
+
       this.setData({
-        [`date.${this.data.id}`]: Array.isArray(event.detail)
-          ? event.detail.map((date) => date.valueOf())
-          : event.detail.valueOf(),
+        [`date.${this.data.id}`]: value,
       });
     },
 
@@ -91,10 +105,15 @@ VantComponent({
       console.log('closed');
     },
 
+    onSelectedStateChange(event) {
+      console.log('selectedStateChange', event);
+    },
+
     resetSettings() {
       this.setData({
         round: true,
         color: '',
+        extraColors: [] as string[],
         minDate: Date.now(),
         maxDate: new Date(
           new Date().getFullYear(),
@@ -146,6 +165,16 @@ VantComponent({
           break;
         case 'maxRange':
           data.maxRange = 3;
+          break;
+        case 'multipleSelectedState':
+          data.selectedStateCount = 3;
+          data.extraColors = ['#2baeb3', '#ff6e3c'];
+          // data.defaultDate = [
+          //   new Date(2024, 5, 10).getTime(),
+          //   new Date(2024, 4, 26).getTime(),
+          //   new Date(2024, 8, 10).getTime(),
+          // ];
+          // data.defaultDateSelectedState = [1, 2, 3];
           break;
       }
 

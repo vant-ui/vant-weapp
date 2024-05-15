@@ -9,6 +9,7 @@ import {
 export interface Day {
   date: Date;
   type: string;
+  selectedState: number;
   text: number;
   bottomInfo?: string;
 }
@@ -24,6 +25,7 @@ VantComponent({
       observer: 'setDays',
     },
     color: String,
+    extraColors: null,
     minDate: {
       type: null,
       observer: 'setDays',
@@ -40,6 +42,10 @@ VantComponent({
     },
     currentDate: {
       type: null,
+      observer: 'setDays',
+    },
+    currentDateSelectedState: {
+      type: Array,
       observer: 'setDays',
     },
     firstDayOfWeek: {
@@ -79,10 +85,12 @@ VantComponent({
       for (let day = 1; day <= totalDay; day++) {
         const date = new Date(year, month, day);
         const type = this.getDayType(date);
+        const selectedState = this.getDaySelectedState(date, type);
 
         let config: Day = {
           date,
           type,
+          selectedState,
           text: day,
           bottomInfo: this.getBottomInfo(type),
         };
@@ -186,6 +194,19 @@ VantComponent({
       }
 
       return '';
+    },
+
+    getDaySelectedState(day: number | Date, dayType: string): number {
+      const { type, currentDate, currentDateSelectedState } = this.data;
+
+      if (type !== 'multiple' || dayType === 'disabled' || !dayType) {
+        return 0;
+      }
+
+      const index = currentDate.findIndex(
+        (item) => compareDay(item, day) === 0
+      );
+      return currentDateSelectedState[index] || 1;
     },
 
     getBottomInfo(type) {

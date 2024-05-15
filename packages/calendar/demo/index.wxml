@@ -103,6 +103,15 @@
     value="{{ computed.formatRange(date.maxRange) }}"
     bind:click="show"
   />
+
+  <van-cell
+    is-link
+    title="多个日期多个选中态"
+    data-type="multiple"
+    data-id="multipleSelectedState"
+    value="{{ computed.formatMultiple(date.multipleSelectedState) }}"
+    bind:click="show"
+  />
 </demo-block>
 
 <demo-block title="平铺展示">
@@ -121,6 +130,7 @@
   show="{{ showCalendar }}"
   type="{{ type }}"
   color="{{ color }}"
+  extraColors="{{ extraColors }}"
   round="{{ round }}"
   position="{{ position }}"
   min-date="{{ minDate }}"
@@ -131,6 +141,9 @@
   confirm-text="{{ confirmText }}"
   confirm-disabled-text="{{ confirmDisabledText }}"
   first-day-of-week="{{ firstDayOfWeek }}"
+  selectedStateCount="{{ selectedStateCount }}"
+  defaultDate="{{ defaultDate }}"
+  defaultDateSelectedState="{{ defaultDateSelectedState }}"
   bind:confirm="onConfirm"
   bind:select="onSelect"
   bind:unselect="onUnselect"
@@ -138,5 +151,6 @@
   bind:opened="onOpened"
   bind:close="onClose"
   bind:closed="onClosed"
+  bind:selectedStateChange="onSelectedStateChange"
 >
 </van-calendar>

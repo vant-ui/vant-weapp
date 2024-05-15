@@ -14,8 +14,8 @@
     <view
       wx:for="{{ days }}"
       wx:key="index"
-      style="{{ computed.getDayStyle(item.type, index, date, rowHeight, color, firstDayOfWeek) }}"
-      class="{{ utils.bem('calendar__day', [item.type]) }} {{ item.className }}"
+      style="{{ computed.getDayStyle(item.type, index, date, rowHeight, color, firstDayOfWeek, item.selectedState, extraColors) }}"
+      class="{{ utils.bem('calendar__day', [item.type]) }} {{ item.className }} selected-state-{{ item.selectedState }}"
       data-index="{{ index }}"
       bindtap="onClick"
     >
