@@ -43,7 +43,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@types/jest": "^27.0.2",
-    "@vant/cli": "^4.0.0",
+    "@vant/cli": "^7.0.3",
     "@vant/icons": "^3.0.1",
     "gulp": "^4.0.2",
     "gulp-insert": "^0.5.0",
@@ -66,5 +66,8 @@
     "Chrome >= 53",
     "ChromeAndroid >= 53",
     "iOS >= 9"
-  ]
+  ],
+  "resolutions": {
+    "source-map": "0.7.4"
+  }
 }
