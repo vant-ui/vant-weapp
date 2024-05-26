@@ -7,6 +7,7 @@
     "noImplicitAny": false,
     "outDir": "dist",
     "baseUrl": ".",
+    "sourceMap": false,
     "strict": true,
     "lib": ["ESNext", "dom"],
     "types": ["@types/jest", "node", "miniprogram-api-typings"],
