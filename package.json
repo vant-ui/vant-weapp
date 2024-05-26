@@ -16,7 +16,6 @@
     "release": "sh build/release.sh",
     "release:site": "vant-cli build-site && gh-pages -d site-dist --add",
     "build:lib": "yarn && npx gulp -f build/compiler.js --series buildEs buildLib",
-    "build:changelog": "vant-cli changelog",
     "upload:weapp": "node build/upload.js",
     "test": "jest",
     "test:watch": "jest --watch"

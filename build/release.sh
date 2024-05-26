@@ -28,7 +28,4 @@ then
   else 
     npm publish
   fi
-
-  # changelog
-  vant-cli changelog
 fi
