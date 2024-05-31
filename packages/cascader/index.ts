@@ -45,6 +45,10 @@ VantComponent({
       type: Boolean,
       value: true,
     },
+    ellipsis: {
+      type: Boolean,
+      value: true,
+    },
     showHeader: {
       type: Boolean,
       value: true,
