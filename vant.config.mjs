@@ -22,6 +22,16 @@ export default {
       },
       syncPathFromSimulator: false,
     },
+    icpLicense: {
+      text: '浙ICP备2021036118号',
+      link: 'https://beian.miit.gov.cn/',
+    },
+    headHtml: `<script>
+if (location.host === 'youzan.github.io') {
+location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
+}
+</script>
+`,
     links: [
       {
         logo: 'https://img.yzcdn.cn/vant/vant-o.svg',
