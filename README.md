@@ -11,7 +11,9 @@
 </p>
 
 <p align="center">
-  🔥 <a href="https://vant-ui.github.io/vant-weapp">文档网站</a>
+  🔥 <a href="https://vant.pro/vant-weapp/">文档网站（国内）</a>
+  &nbsp;
+  🔥 <a href="https://vant-ui.github.io/vant-weapp/">文档网站（GitHub）</a>
   &nbsp;
   🚀 <a href="https://github.com/vant-ui/vant" target="_blank">Vue 版</a>
 </p>
@@ -22,7 +24,7 @@
 
 Vant 是一个**轻量、可靠的移动端组件库**，于 2017 年开源。
 
-目前 Vant 官方提供了 [Vue 2 版本](https://vant-ui.github.io/vant/v2)、[Vue 3 版本](https://vant-ui.github.io/vant)和[微信小程序版本](http://vant-ui.github.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/3lang3/react-vant)和[支付宝小程序版本](https://github.com/ant-move/Vant-Aliapp)。
+目前 Vant 官方提供了 [Vue 2 版本](https://vant-ui.github.io/vant/v2/)、[Vue 3 版本](https://vant-ui.github.io/vant/)和[微信小程序版本](http://vant-ui.github.io/vant-weapp/)，并由社区团队维护 [React 版本](https://github.com/3lang3/react-vant)和[支付宝小程序版本](https://github.com/ant-move/Vant-Aliapp)。
 
 ## 预览
 
@@ -97,6 +99,8 @@ Vant Weapp 最低支持到小程序基础库 2.6.5 版本。
 
 ## 链接
 
+- [文档网站（GitHub）](https://vant-ui.github.io/vant-weapp/)
+- [文档网站（国内）](https://vant.pro/vant-weapp/)
 - [意见反馈](https://github.com/youzan/vant-weapp/issues)
 - [设计资源](https://vant-ui.github.io/vant/#/zh-CN/design)
 - [更新日志](https://vant-ui.github.io/vant-weapp/#/changelog)
