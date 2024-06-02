@@ -12,7 +12,7 @@ export default {
     description: '轻量、可靠的小程序 UI 组件库',
     logo: 'https://img.yzcdn.cn/vant/logo.png',
     simulator: {
-      url: 'https://vant-ui.github.io/vant/v2/mobile.html?weapp=1',
+      url: '/vant/v2/mobile.html?weapp=1',
       routeMapper: (path) => {
         const map = {
           '/common': '/style',
@@ -25,7 +25,7 @@ export default {
     links: [
       {
         logo: 'https://img.yzcdn.cn/vant/vant-o.svg',
-        url: 'https://vant-ui.github.io/vant/',
+        url: '/vant/',
       },
       {
         logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
