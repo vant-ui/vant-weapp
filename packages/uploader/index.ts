@@ -218,6 +218,8 @@ VantComponent({
     },
 
     onPreviewFile(event: WechatMiniprogram.TouchEvent) {
+      if (!this.data.previewFile) return;
+
       const { index } = event.currentTarget.dataset;
 
       wx.openDocument({
