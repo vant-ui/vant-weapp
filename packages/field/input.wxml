@@ -6,7 +6,6 @@
   focus="{{ focus }}"
   cursor="{{ cursor }}"
   value="{{ innerValue }}"
-  auto-focus="{{ autoFocus }}"
   disabled="{{ disabled || readonly }}"
   maxlength="{{ maxlength }}"
   placeholder="{{ placeholder }}"
