@@ -29,7 +29,7 @@
         poster="{{ item.thumb }}"
         autoplay="{{ item.autoplay }}"
         object-fit="{{videoFit}}"
-        referrer-policy="{{videoReferrerPolicy}}"
+        referrer-policy="{{ referrerPolicy }}"
         class="van-uploader__preview-image"
         style="{{ computed.sizeStyle({ previewSize }) }}"
         data-index="{{ index }}"
