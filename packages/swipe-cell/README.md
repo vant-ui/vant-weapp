@@ -55,6 +55,7 @@ Page({
     switch (position) {
       case 'left':
       case 'cell':
+      case 'touch':
         instance.close();
         break;
       case 'right':
@@ -141,7 +142,7 @@ Page({
 
 | 参数     | 类型     | 说明                                               |
 | -------- | -------- | -------------------------------------------------- |
-| position | _string_ | 关闭时的点击位置 (`left` `right` `cell` `outside`) |
+| position | _string_ | 关闭时的点击位置 (`left` `right` `cell` `outside` `touch`) |
 | instance | _object_ | SwipeCell 实例                                     |
 | name     | 标识符   | _string_                                           |
 

@@ -9,6 +9,7 @@ VantComponent({
       switch (position) {
         case 'left':
         case 'cell':
+        case 'touch':
           instance.close();
           break;
         case 'right':

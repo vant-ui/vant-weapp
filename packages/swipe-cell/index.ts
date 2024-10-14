@@ -92,6 +92,11 @@ VantComponent({
       } else if (leftWidth > 0 && offset > leftWidth * THRESHOLD) {
         this.open('left');
       } else {
+        this.$emit('close', {
+          position: 'touch',
+          instance: this,
+          name: this.data.name,
+        });
         this.swipeMove(0);
       }
       this.setData({ catchMove: false });
@@ -121,9 +126,9 @@ VantComponent({
 
       this.dragging = true;
 
-      ARRAY.filter(
-        (item) => item !== this && item.offset !== 0
-      ).forEach((item) => item.close());
+      ARRAY.filter((item) => item !== this && item.offset !== 0).forEach(
+        (item) => item.close(),
+      );
 
       this.setData({ catchMove: true });
       this.swipeMove(this.startOffset + this.deltaX);
