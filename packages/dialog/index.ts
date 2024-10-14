@@ -98,17 +98,22 @@ VantComponent({
       this.close('overlay');
     },
 
-    close(action) {
+    close(action: string) {
       this.setData({ show: false });
 
-      wx.nextTick(() => {
-        this.$emit('close', action);
+      this.closeAction = action;
+    },
 
-        const { callback } = this.data;
-        if (callback) {
-          callback(action, this);
-        }
-      });
+    onAfterLeave() {
+      const { closeAction: action } = this;
+
+      this.$emit('close', action);
+
+      const { callback } = this.data;
+
+      if (callback) {
+        callback(action, this);
+      }
     },
 
     stopLoading() {

@@ -11,6 +11,7 @@
   close-on-click-overlay="{{ closeOnClickOverlay }}"
   root-portal="{{ rootPortal }}"
   bind:close="onClickOverlay"
+  bind:after-leave="onAfterLeave"
 >
   <view
     wx:if="{{ title || useTitleSlot  }}"
