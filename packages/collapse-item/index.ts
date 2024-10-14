@@ -28,6 +28,7 @@ VantComponent({
 
   data: {
     expanded: false,
+    parentBorder: true,
   },
 
   mounted() {
@@ -41,7 +42,7 @@ VantComponent({
         return;
       }
 
-      const { value, accordion } = this.parent.data;
+      const { value, accordion, border } = this.parent.data;
       const { children = [] } = this.parent;
       const { name } = this.data;
 
@@ -56,7 +57,7 @@ VantComponent({
         setContentAnimate(this, expanded, this.mounted);
       }
 
-      this.setData({ index, expanded });
+      this.setData({ index, expanded, parentBorder: border });
     },
 
     onClick() {
