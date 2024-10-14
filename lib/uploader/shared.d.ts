@@ -54,4 +54,8 @@ export declare const mediaProps: {
 };
 export declare const messageFileProps: {
     extension: null;
+    previewFile: {
+        type: BooleanConstructor;
+        value: boolean;
+    };
 };

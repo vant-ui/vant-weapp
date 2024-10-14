@@ -89,13 +89,15 @@ VantComponent({
         },
         close(action) {
             this.setData({ show: false });
-            wx.nextTick(() => {
-                this.$emit('close', action);
-                const { callback } = this.data;
-                if (callback) {
-                    callback(action, this);
-                }
-            });
+            this.closeAction = action;
+        },
+        onAfterLeave() {
+            const { closeAction: action } = this;
+            this.$emit('close', action);
+            const { callback } = this.data;
+            if (callback) {
+                callback(action, this);
+            }
         },
         stopLoading() {
             this.setData({

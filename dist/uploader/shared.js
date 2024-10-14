@@ -58,4 +58,8 @@ export const mediaProps = {
 // props for file
 export const messageFileProps = {
     extension: null,
+    previewFile: {
+        type: Boolean,
+        value: true,
+    },
 };

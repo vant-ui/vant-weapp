@@ -153,6 +153,8 @@ VantComponent({
             });
         },
         onPreviewFile(event) {
+            if (!this.data.previewFile)
+                return;
             const { index } = event.currentTarget.dataset;
             wx.openDocument({
                 filePath: this.data.lists[index].url,

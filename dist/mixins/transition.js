@@ -42,74 +42,81 @@ export function transition(showDefaultValue) {
                 if (value === old) {
                     return;
                 }
-                value ? this.enter() : this.leave();
+                value ? this.enureEnter() : this.enureLeave();
             },
-            enter() {
-                if (this.enterFinishedPromise)
+            enureEnter() {
+                if (this.enterPromise)
                     return;
-                this.enterFinishedPromise = new Promise((resolve) => {
-                    const { duration, name } = this.data;
-                    const classNames = getClassNames(name);
-                    const currentDuration = isObj(duration) ? duration.enter : duration;
-                    if (this.status === 'enter') {
+                this.enterPromise = new Promise((resolve) => this.enter(resolve));
+            },
+            enureLeave() {
+                const { enterPromise } = this;
+                if (!enterPromise)
+                    return;
+                enterPromise
+                    .then(() => new Promise((resolve) => this.leave(resolve)))
+                    .then(() => {
+                    this.enterPromise = null;
+                });
+            },
+            enter(resolve) {
+                const { duration, name } = this.data;
+                const classNames = getClassNames(name);
+                const currentDuration = isObj(duration) ? duration.enter : duration;
+                if (this.status === 'enter') {
+                    return;
+                }
+                this.status = 'enter';
+                this.$emit('before-enter');
+                requestAnimationFrame(() => {
+                    if (this.status !== 'enter') {
                         return;
                     }
-                    this.status = 'enter';
-                    this.$emit('before-enter');
+                    this.$emit('enter');
+                    this.setData({
+                        inited: true,
+                        display: true,
+                        classes: classNames.enter,
+                        currentDuration,
+                    });
                     requestAnimationFrame(() => {
                         if (this.status !== 'enter') {
                             return;
                         }
-                        this.$emit('enter');
-                        this.setData({
-                            inited: true,
-                            display: true,
-                            classes: classNames.enter,
-                            currentDuration,
-                        });
-                        requestAnimationFrame(() => {
-                            if (this.status !== 'enter') {
-                                return;
-                            }
-                            this.transitionEnded = false;
-                            this.setData({ classes: classNames['enter-to'] });
-                            resolve();
-                        });
+                        this.transitionEnded = false;
+                        this.setData({ classes: classNames['enter-to'] });
+                        resolve();
                     });
                 });
             },
-            leave() {
-                if (!this.enterFinishedPromise)
+            leave(resolve) {
+                if (!this.data.display) {
                     return;
-                this.enterFinishedPromise.then(() => {
-                    if (!this.data.display) {
+                }
+                const { duration, name } = this.data;
+                const classNames = getClassNames(name);
+                const currentDuration = isObj(duration) ? duration.leave : duration;
+                this.status = 'leave';
+                this.$emit('before-leave');
+                requestAnimationFrame(() => {
+                    if (this.status !== 'leave') {
                         return;
                     }
-                    const { duration, name } = this.data;
-                    const classNames = getClassNames(name);
-                    const currentDuration = isObj(duration) ? duration.leave : duration;
-                    this.status = 'leave';
-                    this.$emit('before-leave');
+                    this.$emit('leave');
+                    this.setData({
+                        classes: classNames.leave,
+                        currentDuration,
+                    });
                     requestAnimationFrame(() => {
                         if (this.status !== 'leave') {
                             return;
                         }
-                        this.$emit('leave');
-                        this.setData({
-                            classes: classNames.leave,
-                            currentDuration,
-                        });
-                        requestAnimationFrame(() => {
-                            if (this.status !== 'leave') {
-                                return;
-                            }
-                            this.transitionEnded = false;
-                            setTimeout(() => {
-                                this.onTransitionEnd();
-                                this.enterFinishedPromise = null;
-                            }, currentDuration);
-                            this.setData({ classes: classNames['leave-to'] });
-                        });
+                        this.transitionEnded = false;
+                        setTimeout(() => {
+                            this.onTransitionEnd();
+                            resolve();
+                        }, currentDuration);
+                        this.setData({ classes: classNames['leave-to'] });
                     });
                 });
             },
