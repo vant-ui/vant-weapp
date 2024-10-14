@@ -1,5 +1,36 @@
 # 更新日志
 
+### [v1.11.7](https://github.com/youzan/vant-weapp/compare/v1.11.6...v1.11.7)
+
+`2024-10-14`
+
+**Bug Fixes**  
+
+- notice-bar: 修复滚动速度不一致的问题 [#5910](https://github.com/youzan/vant-weapp/pull/5910)  
+- uploader: 修复 `referrer-policy` 属性无效的问题 [#5909](https://github.com/youzan/vant-weapp/pull/5909)  
+- stepper: 修复 `stepper` 组件无法输入小数的问题 [#5908](https://github.com/youzan/vant-weapp/pull/5908)  
+- dialog: 防止嵌套对话框意外关闭 [#5907](https://github.com/youzan/vant-weapp/pull/5907)  
+- steps: 解决最后一个节点描述为空时的对齐问题 [#5906](https://github.com/youzan/vant-weapp/pull/5906)  
+- collapse: 确保 `border` 属性正确关闭底部边框 [#5905](https://github.com/youzan/vant-weapp/pull/5905)  
+- image: 修复图片底部额外空白的问题 [#5904](https://github.com/youzan/vant-weapp/pull/5904)  
+
+**Feature**  
+
+- cascader: 增加 `ellipsis` 属性支持 [#5806](https://github.com/youzan/vant-weapp/pull/5806)  
+- uploader: 增加 `preview-file` 属性支持 [#5828](https://github.com/youzan/vant-weapp/pull/5828)  
+
+**Document**  
+
+- 添加新的文档站点 URL [#5810](https://github.com/youzan/vant-weapp/pull/5810)  
+- 设置旧域名的重定向 [#5811](https://github.com/youzan/vant-weapp/pull/5811)  
+
+**Build**  
+
+- 使用 GitHub 生成 changelog [#5800](https://github.com/youzan/vant-weapp/pull/5800)  
+- 更新 @vant/cli 到 v7 [#5801](https://github.com/youzan/vant-weapp/pull/5801)  
+- 将 `ws` 从 7.5.6 升级到 7.5.10 [#5823](https://github.com/youzan/vant-weapp/pull/5823)  
+- 将 `rollup` 从 4.18.0 升级到 4.22.4 [#5897](https://github.com/youzan/vant-weapp/pull/5897) 
+
 ### [v1.11.6](https://github.com/youzan/vant-weapp/compare/v1.11.5...v1.11.6)
 
 `2024-05-14`
