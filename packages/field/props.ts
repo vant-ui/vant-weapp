@@ -12,7 +12,6 @@ export const commonProps: WechatMiniprogram.Component.PropertyOption = {
     type: Number,
     value: 50,
   },
-  autoFocus: Boolean,
   focus: Boolean,
   cursor: {
     type: Number,
