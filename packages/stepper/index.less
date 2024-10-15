@@ -38,7 +38,7 @@
       bottom: 0;
       left: 0;
       margin: auto;
-      background-color: currentColor;
+      background-color: var(--stepper-button-icon-color, @stepper-button-icon-color);
       content: '';
     }
 
@@ -55,6 +55,13 @@
         --stepper-button-disabled-color,
         @stepper-button-disabled-color
       );
+
+      &::before, &::after {
+        background-color: var(
+        --stepper-button-disabled-icon-color,
+        @stepper-button-disabled-icon-color
+      ) !important;
+      }
     }
 
     &--disabled&--hover {
