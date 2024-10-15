@@ -276,13 +276,15 @@ VantComponent({
         getRect(this, '.van-tabs__nav'),
       ]).then(([tabRects, navRect]) => {
         const tabRect = tabRects[currentIndex];
-        const offsetLeft = tabRects
+        if (tabRect) {
+          const offsetLeft = tabRects
           .slice(0, currentIndex)
           .reduce((prev, curr) => prev + curr.width, 0);
 
-        this.setData({
-          scrollLeft: offsetLeft - (navRect.width - tabRect.width) / 2,
-        });
+          this.setData({
+            scrollLeft: offsetLeft - (navRect.width - tabRect.width) / 2,
+          });
+        }
 
         if (!scrollWithAnimation) {
           nextTick(() => {
