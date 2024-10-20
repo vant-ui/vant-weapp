@@ -1,4 +1,5 @@
 <wxs src="../wxs/utils.wxs" module="utils" />
+<wxs src="./index.wxs" module="computed" />
 
 <van-popup
   show="{{ show }}"
@@ -36,7 +37,7 @@
       loading="{{ loading.cancel }}"
       class="van-dialog__button van-hairline--right"
       custom-class="van-dialog__cancel cancle-button-class"
-      custom-style="color: {{ cancelButtonColor }}"
+      custom-style="{{computed.buttonColor({theme, cancelButtonColor, buttonName: 'cancelButton'})}}"
       bind:click="onCancel"
     >
       {{ cancelButtonText }}
@@ -47,7 +48,7 @@
       class="van-dialog__button"
       loading="{{ loading.confirm }}"
       custom-class="van-dialog__confirm confirm-button-class"
-      custom-style="color: {{ confirmButtonColor }}"
+      custom-style="{{computed.buttonColor({theme, confirmButtonColor, buttonName: 'confirmButton'})}}"
       button-id="{{ confirmButtonId }}"
       open-type="{{ confirmButtonOpenType }}"
       lang="{{ lang }}"
@@ -82,7 +83,7 @@
         loading="{{ loading.cancel }}"
         class="van-dialog__button van-hairline--right"
         custom-class="van-dialog__cancel cancle-button-class"
-        custom-style="color: {{ cancelButtonColor }}"
+        custom-style="{{computed.buttonColor({theme, cancelButtonColor, buttonName: 'cancelButton'})}}"
         bind:click="onCancel"
       >
         {{ cancelButtonText }}
@@ -98,7 +99,7 @@
         class="van-dialog__button"
         loading="{{ loading.confirm }}"
         custom-class="van-dialog__confirm confirm-button-class"
-        custom-style="color: {{ confirmButtonColor }}"
+        custom-style="{{computed.buttonColor({theme, confirmButtonColor, buttonName: 'confirmButton'})}}"
         button-id="{{ confirmButtonId }}"
         open-type="{{ confirmButtonOpenType }}"
         lang="{{ lang }}"

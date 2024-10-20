@@ -43,6 +43,8 @@ interface DialogOptions {
   showCancelButton?: boolean;
   closeOnClickOverlay?: boolean;
   confirmButtonOpenType?: string;
+  confirmButtonColor?: string;
+  cancelButtonColor?: string;
 }
 
 const defaultOptions: DialogOptions = {

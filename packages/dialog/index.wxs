@@ -1,0 +1,26 @@
+/* eslint-disable */
+var style = require('../wxs/style.wxs');
+var RED = '#ee0a24';
+var WHITE = '#fff';
+var GRAY = '#323233';
+function buttonColor(data) {
+  var type = data.buttonName;
+  var theme = data.theme;
+  var color = '';
+  switch (type) {
+    case 'confirmButton':
+      color = data.confirmButtonColor || (theme === 'default' ? RED : WHITE);
+      break;
+    case 'cancelButton':
+      color = data.cancelButtonColor || (theme === 'default' ? GRAY : WHITE);
+      break;
+  }
+
+  return style({
+    color: color,
+  });
+}
+
+module.exports = {
+  buttonColor: buttonColor,
+};
