@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "node build/dev.mjs",
     "lint": "eslint ./packages --ext .js,.ts --fix && stylelint \"packages/**/*.less\" --fix",
-    "prepare": "husky install",
+    "prepare": "husky || true",
     "release": "sh build/release.sh",
     "release:site": "vant-cli build-site && gh-pages -d site-dist --add",
     "build:lib": "yarn && npx gulp -f build/compiler.js --series buildEs buildLib",
@@ -52,6 +52,7 @@
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "husky": "^9.1.6",
     "jest": "^27.3.1",
     "lint-staged": "^13.0.3",
     "merge2": "^1.4.1",
