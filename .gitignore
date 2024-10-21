@@ -12,3 +12,7 @@ changelog.generated.md
 package-lock.json
 build/private.wx1c01b35002d3ba14.key
 project.private.config.json
+.yarn
+.yarn.lock
+.yarnrc.yml
+pnpm-lock.yaml
