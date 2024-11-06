@@ -110,11 +110,12 @@ VantComponent({
       const { data } = this;
       const val = this.correctValue(data.value);
       const isEqual = val === data.innerValue;
-      this.updateColumnValue(val).then(() => {
-        if (!isEqual) {
-          this.$emit('input', val);
-        }
-      });
+
+      if (!isEqual) {
+        this.updateColumnValue(val);
+      } else {
+        this.updateColumns();
+      }
     },
 
     getPicker() {
@@ -322,10 +323,7 @@ VantComponent({
       }
       value = this.correctValue(value);
 
-      this.updateColumnValue(value).then(() => {
-        this.$emit('input', value);
-        this.$emit('change', picker);
-      });
+      this.updateColumnValue(value);
     },
 
     updateColumnValue(value) {
@@ -355,16 +353,17 @@ VantComponent({
         }
       }
 
-      return this.set({ innerValue: value })
-        .then(() => this.updateColumns())
-        .then(() => picker.setValues(values));
+      return this.setData({ innerValue: value }, () => {
+        picker.setValues(values);
+        this.updateColumns();
+        this.$emit('input', value);
+        this.$emit('change', picker);
+      });
     },
   },
 
   created() {
     const innerValue = this.correctValue(this.data.value);
-    this.updateColumnValue(innerValue).then(() => {
-      this.$emit('input', innerValue);
-    });
+    this.updateColumnValue(innerValue);
   },
 });
