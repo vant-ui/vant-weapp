@@ -61,10 +61,15 @@ VantComponent({
       type: Boolean,
       value: true,
     },
+    renderToImage:{
+      type: Boolean,
+      value: false,
+    }
   },
 
   data: {
     hoverColor: BLUE,
+    circleImg:''
   },
 
   methods: {
@@ -176,6 +181,29 @@ VantComponent({
       });
     },
 
+    generateCircleImage():Promise<string>{
+      const {size}=this.data
+      const dpr = getSystemInfoSync().pixelRatio;
+
+      return new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            wx.canvasToTempFilePath({
+              width:size,
+              height:size,
+              destWidth:size* dpr,
+              destHeight:size* dpr,
+                canvasId: 'van-circle',
+                success:(res)=> {
+                resolve(res.tempFilePath)
+                },
+                fail(err){
+                  reject(err)
+                }
+            },this)
+        },200)
+    })
+    },
+
     reRender() {
       // tofector 动画暂时没有想到好的解决方案
       const { value, speed } = this.data;
@@ -220,7 +248,12 @@ VantComponent({
 
     this.setHoverColor().then(() => {
       this.drawCircle(this.currentValue);
-    });
+    }).then(async ()=>{
+      if(this.data.renderToImage){
+        const circleImg=await this.generateCircleImage()
+        this.setData({circleImg})
+      }
+    })
   },
 
   destroyed() {

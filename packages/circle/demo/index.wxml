@@ -10,5 +10,9 @@
   <van-circle value="{{ value }}" size="120" text="大小定制" />
 </demo-block>
 
+<demo-block title="canvas转为Image方式呈现">
+  <van-circle value="{{ value }}" render-to-image size="120" text="这是张图片" />
+</demo-block>
+
 <van-button type="primary" size="small" data-step="10" bind:tap="run">增加</van-button>
 <van-button type="danger" size="small" data-step="-10" bind:tap="run">减少</van-button>

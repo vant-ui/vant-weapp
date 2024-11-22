@@ -86,6 +86,13 @@ Page({
 <van-circle value="{{ value }}" size="120" text="大小定制" />
 ```
 
+### Canvas 转为 Image 方式呈现
+通过`render-to-image`属性设置生成图片。
+
+```html
+<van-circle value="{{ value }}" render-to-image size="120" text="这是张图片" />
+```
+
 ## API
 
 ### Props
@@ -102,6 +109,8 @@ Page({
 | text | 文字 | _string_ | - |
 | stroke-width | 进度条宽度 | _number_ | `4` |
 | clockwise | 是否顺时针增加 | _boolean_ | `true` |
+| reander-to-image | 渲染成图片 | _boolean_ | `false` |
+
 
 ### Slots
 
