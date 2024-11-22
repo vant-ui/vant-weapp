@@ -133,7 +133,7 @@ Page({
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| bind:click | 点击时触发 | 关闭时的点击位置 (`left` `right` `cell` `outside`) |
+| bind:click | 点击时触发 | { position: 关闭时的点击位置 (`left` `right` `cell` `outside`), offset: 偏移量 (offset > 0 代表左侧显示，offset < 0 代表右侧显示)} |
 | bind:close | 关闭时触发 | { position: 'left' \| 'right' , instance , name: string } |
 | bind:open | 打开时触发 | { position: 'left' \| 'right' , name: string } |
 
