@@ -67,9 +67,11 @@ VantComponent({
         onClose() {
             this.$emit('close');
         },
-        onClickOverlay() {
+        onClickOverlay: function () {
+          if (this.data.closeOnClickOverlay) {
             this.$emit('click-overlay');
             this.onClose();
+          }
         },
     },
 });
