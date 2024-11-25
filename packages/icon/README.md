@@ -89,6 +89,7 @@
 | size `v1.10.20` | 图标大小，如 `20px`，`2em`，默认单位为`px` | _string \| number_ | `inherit` |
 | custom-style | 自定义样式 | _string_ | - |
 | class-prefix | 类名前缀 | _string_ | `van-icon` |
+| use-info-slot | 是否使用 info slot | _boolean_ | `false` |
 
 ### Events
 
@@ -102,6 +103,12 @@
 | ------------ | ------------ |
 | custom-class | 根节点样式类 |
 | info-class | 图标右上角文字样式类 |
+
+### Slot
+
+| 类名         | 说明         |
+| ------------ | ------------ |
+| info-slot `v1.11.2` | 自定义info内容,开启useInfoSlot有效 |
 
 ## 常见问题
 

@@ -13,6 +13,7 @@ VantComponent({
       value: 'van-icon',
     },
     name: String,
+    useInfoSlot: Boolean,
   },
 
   methods: {

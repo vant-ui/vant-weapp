@@ -5,12 +5,15 @@
   style="{{ computed.rootStyle({ customStyle, color, size }) }}"
   bindtap="onClick"
 >
-  <van-info
-    wx:if="{{ info !== null || dot }}"
-    dot="{{ dot }}"
-    info="{{ info }}"
-    custom-class="van-icon__info info-class"
-  />
+  <slot name="info-slot" wx:if="{{useInfoSlot}}"></slot>
+  <block wx:else>
+    <van-info
+      wx:if="{{ info !== null || dot }}"
+      dot="{{ dot }}"
+      info="{{ info }}"
+      custom-class="van-icon__info info-class"
+    />
+  </block>
   <image
     wx:if="{{ computed.isImage(name) }}"
     src="{{ name }}"
