@@ -36,6 +36,10 @@ export const videoProps = {
     type: String,
     value: 'no-referrer',
   },
+  showBackgroundPlaybackButton: {
+    type: Boolean,
+    value: false,
+  },
 };
 
 // props for media
