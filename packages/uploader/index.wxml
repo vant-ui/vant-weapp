@@ -30,6 +30,7 @@
         autoplay="{{ item.autoplay }}"
         object-fit="{{videoFit}}"
         referrer-policy="{{ referrerPolicy }}"
+        picture-in-picture-mode="{{ pictureInPictureMode }}"
         class="van-uploader__preview-image"
         style="{{ computed.sizeStyle({ previewSize }) }}"
         data-index="{{ index }}"

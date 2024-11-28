@@ -36,6 +36,10 @@ export const videoProps = {
     type: String,
     value: 'no-referrer',
   },
+  pictureInPictureMode: {
+    type: Array,
+    value: [],
+  },
 };
 
 // props for media
