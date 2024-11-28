@@ -30,6 +30,7 @@
         autoplay="{{ item.autoplay }}"
         object-fit="{{videoFit}}"
         referrer-policy="{{ referrerPolicy }}"
+        show-background-playback-button="{{ showBackgroundPlaybackButton }}"
         class="van-uploader__preview-image"
         style="{{ computed.sizeStyle({ previewSize }) }}"
         data-index="{{ index }}"
