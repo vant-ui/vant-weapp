@@ -20,7 +20,7 @@
 
 ### 基础用法
 
-基础用法与原生 [image](<(https://developers.weixin.qq.com/miniprogram/dev/component/image.html)>) 标签一致，可以设置`src`、`width`、`height`等原生属性。
+基础用法与原生 [image](https://developers.weixin.qq.com/miniprogram/dev/component/image.html) 标签一致，可以设置`src`、`width`、`height`等原生属性。
 
 ```html
 <van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
