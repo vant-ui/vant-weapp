@@ -55,7 +55,7 @@
     "jest": "^27.3.1",
     "lint-staged": "^13.0.3",
     "merge2": "^1.4.1",
-    "miniprogram-api-typings": "^3.1.6",
+    "miniprogram-api-typings": "^4.0.2",
     "miniprogram-ci": "^1.6.1",
     "miniprogram-simulate": "^1.4.2",
     "stylelint": "13.13.1",
