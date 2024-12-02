@@ -46,6 +46,12 @@ VantComponent({
   },
 
   methods: {
+    promiseSetData(data: any) {
+      return new Promise<void>((resolve) => {
+        this.setData(data, resolve);
+      });
+    },
+
     getCount() {
       return this.data.options.length;
     },
@@ -119,7 +125,7 @@ VantComponent({
       const offset = -index * data.itemHeight;
 
       if (index !== data.currentIndex) {
-        return this.set({ offset, currentIndex: index }).then(() => {
+        return this.promiseSetData({ offset, currentIndex: index }).then(() => {
           userAction && this.$emit('change', index);
         });
       }

@@ -106,15 +106,28 @@ VantComponent({
   },
 
   methods: {
+    promiseSetData(data: any) {
+      return new Promise<void>((resolve) => {
+        this.setData(data, resolve);
+      });
+    },
+
+    isEqualForArray(oldData: any[], newData: any[]): boolean {
+      if (Array.isArray(oldData) && Array.isArray(newData)) {
+        return oldData.every((item, index) => item === newData[index]);
+      }
+      return false;
+    },
+
     updateValue() {
       const { data } = this;
       const val = this.correctValue(data.value);
       const isEqual = val === data.innerValue;
-      this.updateColumnValue(val).then(() => {
-        if (!isEqual) {
+      if (!isEqual) {
+        this.updateColumnValue(val).then(() => {
           this.$emit('input', val);
-        }
-      });
+        });
+      }
     },
 
     getPicker() {
@@ -136,7 +149,7 @@ VantComponent({
         values: column.values.map((value) => formatter(column.type, value)),
       }));
 
-      return this.set({ columns: results });
+      return this.promiseSetData({ columns: results });
     },
 
     getOriginColumns() {
@@ -172,20 +185,10 @@ VantComponent({
         ];
       }
 
-      const {
-        maxYear,
-        maxDate,
-        maxMonth,
-        maxHour,
-        maxMinute,
-      } = this.getBoundary('max', data.innerValue);
-      const {
-        minYear,
-        minDate,
-        minMonth,
-        minHour,
-        minMinute,
-      } = this.getBoundary('min', data.innerValue);
+      const { maxYear, maxDate, maxMonth, maxHour, maxMinute } =
+        this.getBoundary('max', data.innerValue);
+      const { minYear, minDate, minMonth, minHour, minMinute } =
+        this.getBoundary('min', data.innerValue);
 
       const result = [
         {
@@ -355,9 +358,18 @@ VantComponent({
         }
       }
 
-      return this.set({ innerValue: value })
+      return this.promiseSetData({ innerValue: value })
         .then(() => this.updateColumns())
-        .then(() => picker.setValues(values));
+        .then(() => {
+          const pickerValues = picker.getValues();
+          const status =
+            pickerValues && this.isEqualForArray(pickerValues, values);
+
+          if (status) {
+            return Promise.resolve();
+          }
+          return picker.setValues(values);
+        });
     },
   },
 
