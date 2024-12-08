@@ -131,7 +131,7 @@ VantComponent({
         scrollable:
           this.children.length > data.swipeThreshold || !data.ellipsis,
       });
-
+      this.resize();
       this.setCurrentIndexByName(data.active || this.getCurrentName());
     },
 
@@ -196,13 +196,7 @@ VantComponent({
         });
       });
 
-      if (currentIndex === data.currentIndex) {
-        if (!data.inited) {
-          this.resize();
-        }
-        return;
-      }
-
+      if (currentIndex === data.currentIndex) return;
       const shouldEmitChange = data.currentIndex !== null;
       this.setData({ currentIndex });
 
