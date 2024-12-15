@@ -29,6 +29,7 @@
   bindgetRealTimePhoneNumber="onGetRealTimePhoneNumber"
   bindgetphonenumber="onGetPhoneNumber"
   bindlaunchapp="onLaunchApp"
+  bindchooseavatar="onChooseAvatar"
 >
   {{ text }}
   <slot></slot>
