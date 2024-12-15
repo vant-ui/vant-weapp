@@ -21,6 +21,7 @@
   bindgetuserinfo="onGetUserInfo"
   bindgetphonenumber="onGetPhoneNumber"
   bindlaunchapp="onLaunchApp"
+  bindchooseavatar="onChooseAvatar"
 >
   <van-icon
     wx:if="{{ icon }}"
