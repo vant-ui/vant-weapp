@@ -15,6 +15,7 @@
   <scroll-view
     class="van-calendar__body"
     scroll-y
+    bindscroll="scrolling"
     scroll-into-view="{{ scrollIntoView }}"
   >
     <month
@@ -22,6 +23,7 @@
       wx:key="index"
       id="month{{ index }}"
       class="month"
+      visible="{{!monthVisibleControl || monthHideMap[index]}}"
       data-date="{{ item }}"
       date="{{ item }}"
       type="{{ type }}"

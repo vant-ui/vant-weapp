@@ -110,6 +110,7 @@
     title="日历"
     poppable="{{ false }}"
     show-confirm="{{ false }}"
+    type="range"
     min-date="{{ tiledMinDate }}"
     max-date="{{ tiledMaxDate }}"
     first-day-of-week="{{ firstDayOfWeek }}"

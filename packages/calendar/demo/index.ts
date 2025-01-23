@@ -49,7 +49,7 @@ VantComponent({
     showConfirm: false,
     showCalendar: false,
     tiledMinDate: new Date(2012, 0, 10).getTime(),
-    tiledMaxDate: new Date(2012, 2, 20).getTime(),
+    tiledMaxDate: new Date(2030, 2, 20).getTime(),
     confirmText: '确定',
     confirmDisabledText: '确定',
     firstDayOfWeek: 0,

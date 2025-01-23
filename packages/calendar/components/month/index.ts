@@ -32,6 +32,11 @@ VantComponent({
       type: null,
       observer: 'setDays',
     },
+    visible: {
+      type: Boolean,
+      value: true,
+      observer: 'setDays',
+    },
     showMark: Boolean,
     rowHeight: null,
     formatter: {
@@ -52,7 +57,7 @@ VantComponent({
   },
 
   data: {
-    visible: true,
+    // visible: true,
     days: [] as Day[],
   },
 

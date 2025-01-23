@@ -1,16 +1,16 @@
 import { VantComponent } from '../common/component';
 import {
-  ROW_HEIGHT,
-  getPrevDay,
-  getNextDay,
-  getToday,
-  compareDay,
-  copyDates,
-  calcDateNum,
-  formatMonthTitle,
-  compareMonth,
-  getMonths,
-  getDayByOffset,
+    ROW_HEIGHT,
+    getPrevDay,
+    getNextDay,
+    getToday,
+    compareDay,
+    copyDates,
+    calcDateNum,
+    formatMonthTitle,
+    compareMonth,
+    getMonths,
+    getDayByOffset,
 } from './utils';
 import { Day } from './components/month/index';
 
@@ -136,6 +136,10 @@ VantComponent({
       value: 0,
     },
     readonly: Boolean,
+    maxSimDays: {
+      type: Number,
+      value: 300
+    },
     rootPortal: {
       type: Boolean,
       value: false,
@@ -146,6 +150,9 @@ VantComponent({
     subtitle: '',
     currentDate: null as any,
     scrollIntoView: '',
+    monthData:[],
+    monthVisibleControl: false,
+    monthHideMap: {}
   },
 
   watch: {
@@ -171,12 +178,73 @@ VantComponent({
   },
 
   methods: {
+      scrolling (e) {
+          const me = this;
+          if (me.data.timer) {
+              clearTimeout(me.data.timer);
+          }
+          me.data.timer = setTimeout(()=>{
+              const {minDate, maxDate} = me.data;
+              let monthData: number[] = me.data.monthData;
+              if (!monthData?.length) {
+                  monthData = getMonths(minDate, maxDate)
+              }
+              const {scrollTop, scrollHeight} = e.detail;
+              //  每一行的高度。
+              const cHeight = scrollHeight / (monthData.length);
+              //  当前所在月
+              const curMonth = Math.floor(scrollTop / cHeight);
+              const monthHideMap: {[key: string]: boolean} = {};
+              for (let i = Math.max(0, curMonth - 1); i < Math.min(monthData.length, curMonth+3); i++) {
+                  monthHideMap[i] = true;
+              }
+              me.setData({
+                  // @ts-ignore
+                  monthData,
+                  scrollTop,
+                  scrollHeight,
+                  cHeight,
+                  monthHideMap,
+              })
+              clearTimeout(this.data.timer);
+          }, 200)
+      },
+
     reset() {
       this.setData({ currentDate: this.getInitialDate(this.data.defaultDate) });
       this.scrollIntoView();
     },
 
     initRect() {
+      //     新增 当minDate MaxDate区间大于 `maxSimDays` 天时，日历面板控制总节点数量，只显示当前选中前后三个月的月份日期。
+        const {minDate, maxDate, maxSimDays, cHeight, scrollTop, scrollHeight} = this.data;
+        if (minDate && maxDate && Math.abs(maxDate-minDate)>maxSimDays*24*60*60*1000) {
+            let monthData: number[] = this.data.monthData;
+            const monthHideMap: {[key: string]: boolean} = {};
+            if (!monthData?.length) {
+                monthData = getMonths(minDate, maxDate)
+            }
+            let minLoop = 0,maxLoop = 4;
+            if (scrollTop && cHeight && scrollHeight) {
+                let curMonth = Math.floor(scrollTop / cHeight);
+                minLoop = Math.max(0, curMonth-1);
+                maxLoop = Math.min(monthData.length, curMonth+3);
+            }
+            for (let i = minLoop; i < maxLoop; i++) {
+                monthHideMap[i] = true;
+            }
+
+            this.setData({
+                // @ts-ignore
+                monthData: monthData,
+                monthHideMap,
+                monthVisibleControl: true,
+            })
+        }else {
+            this.setData({
+                monthVisibleControl: false,
+            })
+        }
       if (this.contentObserver != null) {
         this.contentObserver.disconnect();
       }
