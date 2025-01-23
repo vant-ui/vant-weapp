@@ -9,7 +9,9 @@
   custom-style="width: {{ utils.addUnit(width) }};{{ customStyle }}"
   overlay-style="{{ overlayStyle }}"
   close-on-click-overlay="{{ closeOnClickOverlay }}"
+  root-portal="{{ rootPortal }}"
   bind:close="onClickOverlay"
+  bind:after-leave="onAfterLeave"
 >
   <view
     wx:if="{{ title || useTitleSlot  }}"
@@ -57,6 +59,7 @@
       show-message-card="{{ showMessageCard }}"
       app-parameter="{{ appParameter }}"
       bindagreeprivacyauthorization="onAgreePrivacyAuthorization"
+      bindgetRealTimePhoneNumber="onGetRealTimePhoneNumber"
       bind:click="onConfirm"
       bindgetuserinfo="onGetUserInfo"
       bindcontact="onContact"
@@ -107,6 +110,7 @@
         show-message-card="{{ showMessageCard }}"
         app-parameter="{{ appParameter }}"
         bindagreeprivacyauthorization="onAgreePrivacyAuthorization"
+        bindgetRealTimePhoneNumber="onGetRealTimePhoneNumber"
         bind:click="onConfirm"
         bindgetuserinfo="onGetUserInfo"
         bindcontact="onContact"

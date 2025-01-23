@@ -36,6 +36,10 @@ VantComponent({
             type: null,
             value: 300,
         },
+        rootPortal: {
+            type: Boolean,
+            value: false,
+        },
     },
     methods: {
         onClickOverlay() {

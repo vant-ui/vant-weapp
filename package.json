@@ -1,6 +1,6 @@
 {
   "name": "@vant/weapp",
-  "version": "1.11.1",
+  "version": "1.11.7",
   "author": "vant-ui",
   "license": "MIT",
   "miniprogram": "lib",
@@ -16,7 +16,6 @@
     "release": "sh build/release.sh",
     "release:site": "vant-cli build-site && gh-pages -d site-dist --add",
     "build:lib": "yarn && npx gulp -f build/compiler.js --series buildEs buildLib",
-    "build:changelog": "vant-cli changelog",
     "upload:weapp": "node build/upload.js",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -44,8 +43,9 @@
     "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@types/jest": "^27.0.2",
-    "@vant/cli": "^4.0.0",
+    "@vant/cli": "^7.0.3",
     "@vant/icons": "^3.0.1",
+    "@vant/stylelint-config": "^1.4.2",
     "gulp": "^4.0.2",
     "gulp-insert": "^0.5.0",
     "gulp-less": "^5.0.0",
@@ -58,6 +58,7 @@
     "miniprogram-api-typings": "^3.1.6",
     "miniprogram-ci": "^1.6.1",
     "miniprogram-simulate": "^1.4.2",
+    "stylelint": "13.13.1",
     "ts-jest": "^27.0.7",
     "tscpaths": "^0.0.9",
     "typescript": "^4.4.4",
@@ -67,5 +68,8 @@
     "Chrome >= 53",
     "ChromeAndroid >= 53",
     "iOS >= 9"
-  ]
+  ],
+  "resolutions": {
+    "source-map": "0.7.4"
+  }
 }

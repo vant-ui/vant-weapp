@@ -139,7 +139,11 @@ VantComponent({
     maxSimDays: {
       type: Number,
       value: 300
-    }
+    },
+    rootPortal: {
+      type: Boolean,
+      value: false,
+    },
   },
 
   data: {

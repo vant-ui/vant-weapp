@@ -120,7 +120,7 @@
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | id | 标识符 | _string_ | - |
-| button-id `v1.10.25`| 标识符，作为原生button组件的id值 | _string_ | - |
+| button-id `v1.10.25` | 标识符，作为原生 button 组件的 id 值 | _string_ | - |
 | type | 按钮类型，可选值为 `primary` `info` `warning` `danger` | _string_ | `default` |
 | size | 按钮尺寸，可选值为 `normal` `large` `small` `mini` | _string_ | `normal` |
 | color `v1.0.0` | 按钮颜色，支持传入`linear-gradient`渐变色 | _string_ | - |
@@ -167,7 +167,8 @@
 
 ### 外部样式类
 
-| 类名          | 说明           |
-| ------------- | -------------- |
-| custom-class  | 根节点样式类   |
-| loading-class | 加载图标样式类 |
+| 类名          | 说明                   |
+| ------------- | ---------------------- |
+| custom-class  | 根节点样式类           |
+| hover-class   | 指定按钮按下去的样式类 |
+| loading-class | 加载图标样式类         |

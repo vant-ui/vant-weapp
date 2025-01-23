@@ -266,6 +266,7 @@ Page({
 | before-close | 关闭前的回调函数，返回 `false` 可阻止关闭，支持返回 Promise | _(action) => boolean \| Promise\<boolean\>_ | - |
 | transition | 动画名称，可选值为`fade` | _string_ | `scale` |
 | confirm-button-open-type | 确认按钮的微信开放能力，具体支持可参考 [微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/component/button.html) | _string_ | - |
+| root-portal `v1.11.3` | 是否从页面子树中脱离出来，用于解决各种 fixed 失效问题，微信基础库 >= `2.25.2 `  | _boolean_ | `false` |
 
 ### OpenType Props
 

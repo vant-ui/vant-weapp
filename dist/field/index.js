@@ -31,6 +31,18 @@ VantComponent({
         innerValue: '',
         showClear: false,
     },
+    watch: {
+        value(value) {
+            if (value !== this.value) {
+                this.setData({ innerValue: value });
+                this.value = value;
+                this.setShowClear();
+            }
+        },
+        clearTrigger() {
+            this.setShowClear();
+        },
+    },
     created() {
         this.value = this.data.value;
         this.setData({ innerValue: this.value });
@@ -95,6 +107,9 @@ VantComponent({
         onKeyboardHeightChange(event) {
             this.$emit('keyboardheightchange', event.detail);
         },
+        onBindNicknameReview(event) {
+            this.$emit('nicknamereview', event.detail);
+        },
         emitChange(detail) {
             const { extraEventParams } = this.data;
             this.setData({ value: detail.value });
@@ -116,7 +131,7 @@ VantComponent({
                 const trigger = clearTrigger === 'always' || (clearTrigger === 'focus' && focused);
                 showClear = hasValue && trigger;
             }
-            this.setData({ showClear });
+            this.setView({ showClear });
         },
         noop() { },
     },

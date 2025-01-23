@@ -12,6 +12,7 @@
   open-type="{{ openType }}"
   class="{{ utils.bem('goods-action-button', [type, { first: isFirst, last: isLast, plain: plain }])}}"
   custom-class="van-goods-action-button__inner custom-class"
+  custom-style="{{customStyle}}"
   business-id="{{ businessId }}"
   session-from="{{ sessionFrom }}"
   app-parameter="{{ appParameter }}"
@@ -25,6 +26,7 @@
   bindopensetting="onOpenSetting"
   bindgetuserinfo="onGetUserInfo"
   bindagreeprivacyauthorization="onAgreePrivacyAuthorization"
+  bindgetRealTimePhoneNumber="onGetRealTimePhoneNumber"
   bindgetphonenumber="onGetPhoneNumber"
   bindlaunchapp="onLaunchApp"
 >

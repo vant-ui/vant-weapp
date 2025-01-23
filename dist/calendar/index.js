@@ -113,6 +113,10 @@ VantComponent({
             value: 0,
         },
         readonly: Boolean,
+        rootPortal: {
+            type: Boolean,
+            value: false,
+        },
     },
     data: {
         subtitle: '',

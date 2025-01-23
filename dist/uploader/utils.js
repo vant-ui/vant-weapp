@@ -1,4 +1,4 @@
-import { pickExclude, isPC } from '../common/utils';
+import { pickExclude, isPC, isWxWork } from '../common/utils';
 import { isImageUrl, isVideoUrl } from '../common/validator';
 export function isImageFile(item) {
     if (item.isImage != null) {
@@ -33,7 +33,7 @@ function formatVideo(res) {
     ];
 }
 function formatMedia(res) {
-    return res.tempFiles.map((item) => (Object.assign(Object.assign({}, pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath'])), { type: res.type, url: item.tempFilePath, thumb: res.type === 'video' ? item.thumbTempFilePath : item.tempFilePath })));
+    return res.tempFiles.map((item) => (Object.assign(Object.assign({}, pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath'])), { type: item.fileType, url: item.tempFilePath, thumb: item.fileType === 'video' ? item.thumbTempFilePath : item.tempFilePath })));
 }
 function formatFile(res) {
     return res.tempFiles.map((item) => (Object.assign(Object.assign({}, pickExclude(item, ['path'])), { url: item.path })));
@@ -42,7 +42,7 @@ export function chooseFile({ accept, multiple, capture, compressed, maxDuration,
     return new Promise((resolve, reject) => {
         switch (accept) {
             case 'image':
-                if (isPC) {
+                if (isPC || isWxWork) {
                     wx.chooseImage({
                         count: multiple ? Math.min(maxCount, 9) : 1,
                         sourceType: capture,

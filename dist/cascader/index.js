@@ -36,6 +36,10 @@ VantComponent({
             type: Boolean,
             value: true,
         },
+        ellipsis: {
+            type: Boolean,
+            value: true,
+        },
         showHeader: {
             type: Boolean,
             value: true,
@@ -49,6 +53,7 @@ VantComponent({
             value: defaultFieldNames,
             observer: 'updateFieldNames',
         },
+        useTitleSlot: Boolean,
     },
     data: {
         tabs: [],
@@ -147,6 +152,7 @@ VantComponent({
                         selected: null,
                     },
                 ],
+                activeTab: 0,
             });
         },
         onClose() {

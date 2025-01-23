@@ -61,7 +61,7 @@ VantComponent({
                     getRect(this, '.van-notice-bar__wrap'),
                 ]).then((rects) => {
                     const [contentRect, wrapRect] = rects;
-                    const { speed, scrollable, delay } = this.data;
+                    const { scrollable } = this.data;
                     if (contentRect == null ||
                         wrapRect == null ||
                         !contentRect.width ||
@@ -70,18 +70,24 @@ VantComponent({
                         return;
                     }
                     if (scrollable || wrapRect.width < contentRect.width) {
-                        const duration = ((wrapRect.width + contentRect.width) / speed) * 1000;
-                        this.wrapWidth = wrapRect.width;
-                        this.contentWidth = contentRect.width;
-                        this.duration = duration;
-                        this.animation = wx.createAnimation({
-                            duration,
-                            timingFunction: 'linear',
-                            delay,
-                        });
+                        this.initAnimation(wrapRect.width, contentRect.width);
                         this.scroll(true);
                     }
                 });
+            });
+        },
+        initAnimation(warpWidth, contentWidth) {
+            const { speed, delay } = this.data;
+            this.wrapWidth = warpWidth;
+            this.contentWidth = contentWidth;
+            // begin 0
+            this.contentDuration = (contentWidth / speed) * 1000;
+            // begin -wrapWidth
+            this.duration = ((warpWidth + contentWidth) / speed) * 1000;
+            this.animation = wx.createAnimation({
+                duration: this.contentDuration,
+                timingFunction: 'linear',
+                delay,
             });
         },
         scroll(isInit = false) {
@@ -93,17 +99,18 @@ VantComponent({
                     .step()
                     .export(),
             });
+            const duration = isInit ? this.contentDuration : this.duration;
             requestAnimationFrame(() => {
                 this.setData({
                     animationData: this.animation
                         .translateX(-this.contentWidth)
-                        .step()
+                        .step({ duration })
                         .export(),
                 });
             });
             this.timer = setTimeout(() => {
                 this.scroll();
-            }, this.duration + this.data.delay);
+            }, duration + this.data.delay);
         },
         onClickIcon(event) {
             if (this.data.mode === 'closeable') {

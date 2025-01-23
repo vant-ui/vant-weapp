@@ -166,6 +166,7 @@ Page({
 | close-on-click-action | 是否在点击选项后关闭 | _boolean_ | `true` |
 | close-on-click-overlay | 点击遮罩是否关闭菜单 | _boolean_ | `true` |
 | safe-area-inset-bottom | 是否为 iPhoneX 留出底部安全距离 | _boolean_ | `true` |
+| root-portal `v1.11.3` | 是否从页面子树中脱离出来，用于解决各种 fixed 失效问题，微信基础库 >= `2.25.2 ` | _boolean_ | `false` |
 
 ### Events
 
@@ -207,7 +208,7 @@ Page({
 
 ### 外部样式类
 
-| 类名         | 说明           |
-| ------------ | -------------- |
-| custom-class `v1.10.7` | 根节点样式类   |
-| list-class `v1.10.7` | `actions`容器样式类   |
+| 类名                   | 说明                |
+| ---------------------- | ------------------- |
+| custom-class `v1.10.7` | 根节点样式类        |
+| list-class `v1.10.7`   | `actions`容器样式类 |

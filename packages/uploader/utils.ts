@@ -73,9 +73,10 @@ function formatVideo(
 function formatMedia(res: WechatMiniprogram.ChooseMediaSuccessCallbackResult) {
   return res.tempFiles.map((item) => ({
     ...pickExclude(item, ['fileType', 'thumbTempFilePath', 'tempFilePath']),
-    type: res.type,
+    type: item.fileType,
     url: item.tempFilePath,
-    thumb: res.type === 'video' ? item.thumbTempFilePath : item.tempFilePath,
+    thumb:
+      item.fileType === 'video' ? item.thumbTempFilePath : item.tempFilePath,
   }));
 }
 

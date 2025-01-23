@@ -168,6 +168,7 @@ Page({
 | overlay | 是否显示遮罩层 | _boolean_ | `true` |
 | close-on-click-overlay | 是否在点击遮罩层后关闭 | _boolean_ | `true` |
 | safe-area-inset-bottom | 是否开启底部安全区适配 | _boolean_ | `true` |
+| root-portal `v1.11.3` | 是否从页面子树中脱离出来，用于解决各种 fixed 失效问题，微信基础库 >= `2.25.2 `  | _boolean_ | `false` |
 
 ### Option 数据结构
 

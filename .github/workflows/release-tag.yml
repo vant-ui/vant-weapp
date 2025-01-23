@@ -11,13 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
+
       - name: Create Release for Tag
         id: release_tag
-        uses: yyx990803/release-tag@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
+          generateReleaseNotes: "true"
           body: |
-            更新内容参见 [CHANGELOG](https://vant-contrib.gitee.io/vant-weapp/#/changelog)。
+            > 请访问 [更新日志](https://vant-ui.github.io/vant-weapp/#/changelog) 了解所有更新。

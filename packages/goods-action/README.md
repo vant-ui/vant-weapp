@@ -144,6 +144,7 @@ Page({
 | send-message-path | 会话内消息卡片点击跳转小程序路径 | _string_ | 当前分享路径 |
 | send-message-img | sendMessageImg | _string_ | 截图 |
 | show-message-card | 显示会话内消息卡片 | _string_ | `false` |
+| custom-style `v1.11.3` | 自定义样式 | _string_ | '' |
 
 ### Events
 

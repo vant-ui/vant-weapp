@@ -94,12 +94,12 @@ Page({
     value: 1,
   },
 
-  onChange(value) {
+  onChange(event) {
     Toast.loading({ forbidClick: true });
 
     setTimeout(() => {
       Toast.clear();
-      this.setData({ value });
+      this.setData({ value: event.detail });
     }, 500);
   },
 });
@@ -137,7 +137,7 @@ Page({
 | disable-plus | 是否禁用增加按钮 | _boolean_ | - |
 | disable-minus | 是否禁用减少按钮 | _boolean_ | - |
 | long-press | 是否开启长按手势 | _boolean_ | `true` |
-| always-embed `v1.9.3` | 强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 (仅在 iOS 下生效) |  _boolean_ | `false` |
+| always-embed `v1.9.3` | 强制 input 处于同层状态，默认 focus 时 input 会切到非同层状态 (仅在 iOS 下生效) | _boolean_ | `false` |
 
 ### Events
 

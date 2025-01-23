@@ -19,6 +19,10 @@ VantComponent({
             type: String,
             value: 'danger',
         },
+        customStyle: {
+            type: String,
+            value: '',
+        },
     },
     methods: {
         onClick(event) {

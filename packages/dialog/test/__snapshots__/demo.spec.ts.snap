@@ -265,6 +265,7 @@ exports[`should render demo and match snapshot 1`] = `
   >
     <van-popup
       customClass="van-dialog van-dialog--default custom-class"
+      bind:after-leave="onAfterLeave"
       bind:close="onClickOverlay"
     >
       <van-overlay
@@ -281,6 +282,7 @@ exports[`should render demo and match snapshot 1`] = `
   <van-dialog>
     <van-popup
       customClass="van-dialog van-dialog--default custom-class"
+      bind:after-leave="onAfterLeave"
       bind:close="onClickOverlay"
     >
       <van-overlay

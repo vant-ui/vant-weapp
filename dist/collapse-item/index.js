@@ -24,6 +24,7 @@ VantComponent({
     },
     data: {
         expanded: false,
+        parentBorder: true,
     },
     mounted() {
         this.updateExpanded();
@@ -34,7 +35,7 @@ VantComponent({
             if (!this.parent) {
                 return;
             }
-            const { value, accordion } = this.parent.data;
+            const { value, accordion, border } = this.parent.data;
             const { children = [] } = this.parent;
             const { name } = this.data;
             const index = children.indexOf(this);
@@ -45,7 +46,7 @@ VantComponent({
             if (expanded !== this.data.expanded) {
                 setContentAnimate(this, expanded, this.mounted);
             }
-            this.setData({ index, expanded });
+            this.setData({ index, expanded, parentBorder: border });
         },
         onClick() {
             if (this.data.disabled) {

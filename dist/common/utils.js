@@ -82,3 +82,5 @@ export function getCurrentPage() {
     return pages[pages.length - 1];
 }
 export const isPC = ['mac', 'windows'].includes(getSystemInfoSync().platform);
+// 是否企业微信
+export const isWxWork = getSystemInfoSync().environment === 'wxwork';

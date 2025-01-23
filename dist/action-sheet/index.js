@@ -36,6 +36,10 @@ VantComponent({
             type: Boolean,
             value: true,
         },
+        rootPortal: {
+            type: Boolean,
+            value: false,
+        },
     },
     methods: {
         onSelect(event) {

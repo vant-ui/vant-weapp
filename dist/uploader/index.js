@@ -1,7 +1,7 @@
 import { VantComponent } from '../common/component';
-import { isImageFile, chooseFile, isVideoFile } from './utils';
-import { imageProps, videoProps, mediaProps, messageFileProps } from './shared';
 import { isBoolean, isPromise } from '../common/validator';
+import { imageProps, mediaProps, messageFileProps, videoProps } from './shared';
+import { chooseFile, isImageFile, isVideoFile } from './utils';
 VantComponent({
     props: Object.assign(Object.assign(Object.assign(Object.assign({ disabled: Boolean, multiple: Boolean, uploadText: String, useBeforeRead: Boolean, afterRead: null, beforeRead: null, previewSize: {
             type: null,
@@ -153,6 +153,8 @@ VantComponent({
             });
         },
         onPreviewFile(event) {
+            if (!this.data.previewFile)
+                return;
             const { index } = event.currentTarget.dataset;
             wx.openDocument({
                 filePath: this.data.lists[index].url,

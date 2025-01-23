@@ -21,7 +21,6 @@ export function transition(showDefaultValue) {
             duration: {
                 type: null,
                 value: 300,
-                observer: 'observeDuration',
             },
             name: {
                 type: String,
@@ -43,9 +42,24 @@ export function transition(showDefaultValue) {
                 if (value === old) {
                     return;
                 }
-                value ? this.enter() : this.leave();
+                value ? this.enureEnter() : this.enureLeave();
             },
-            enter() {
+            enureEnter() {
+                if (this.enterPromise)
+                    return;
+                this.enterPromise = new Promise((resolve) => this.enter(resolve));
+            },
+            enureLeave() {
+                const { enterPromise } = this;
+                if (!enterPromise)
+                    return;
+                enterPromise
+                    .then(() => new Promise((resolve) => this.leave(resolve)))
+                    .then(() => {
+                    this.enterPromise = null;
+                });
+            },
+            enter(resolve) {
                 const { duration, name } = this.data;
                 const classNames = getClassNames(name);
                 const currentDuration = isObj(duration) ? duration.enter : duration;
@@ -71,10 +85,11 @@ export function transition(showDefaultValue) {
                         }
                         this.transitionEnded = false;
                         this.setData({ classes: classNames['enter-to'] });
+                        resolve();
                     });
                 });
             },
-            leave() {
+            leave(resolve) {
                 if (!this.data.display) {
                     return;
                 }
@@ -97,7 +112,10 @@ export function transition(showDefaultValue) {
                             return;
                         }
                         this.transitionEnded = false;
-                        setTimeout(() => this.onTransitionEnd(), currentDuration);
+                        setTimeout(() => {
+                            this.onTransitionEnd();
+                            resolve();
+                        }, currentDuration);
                         this.setData({ classes: classNames['leave-to'] });
                     });
                 });

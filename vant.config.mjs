@@ -12,7 +12,7 @@ export default {
     description: '轻量、可靠的小程序 UI 组件库',
     logo: 'https://img.yzcdn.cn/vant/logo.png',
     simulator: {
-      url: 'https://vant-contrib.gitee.io/vant/v2/mobile.html?weapp=1',
+      url: '/vant/v2/mobile.html?weapp=1',
       routeMapper: (path) => {
         const map = {
           '/common': '/style',
@@ -22,10 +22,20 @@ export default {
       },
       syncPathFromSimulator: false,
     },
+    icpLicense: {
+      text: '浙ICP备2021036118号',
+      link: 'https://beian.miit.gov.cn/',
+    },
+    headHtml: `<script>
+if (location.host === 'youzan.github.io') {
+location.href = location.href.replace('youzan.github.io', 'vant-ui.github.io');
+}
+</script>
+`,
     links: [
       {
         logo: 'https://img.yzcdn.cn/vant/vant-o.svg',
-        url: 'https://vant-contrib.gitee.io/vant/',
+        url: '/vant/',
       },
       {
         logo: 'https://b.yzcdn.cn/vant/logo/github.svg',

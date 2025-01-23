@@ -81,20 +81,21 @@ VantComponent({
 
   created() {
     this.setData({
-      currentValue: this.format(this.data.value),
+      currentValue: this.format(this.data.value).newValue,
     });
   },
 
   methods: {
     observeValue() {
       const { value } = this.data;
-      this.setData({ currentValue: this.format(value) });
+      this.setData({ currentValue: this.format(value).newValue });
     },
 
     check() {
-      const val = this.format(this.data.currentValue);
-      if (!equal(val, this.data.currentValue)) {
-        this.setData({ currentValue: val });
+      const { newValue } = this.format(this.data.currentValue);
+
+      if (!equal(newValue, this.data.currentValue)) {
+        this.setData({ currentValue: newValue });
       }
     },
 
@@ -114,20 +115,20 @@ VantComponent({
     },
 
     onBlur(event: WechatMiniprogram.InputBlur) {
-      const value = this.format(event.detail.value);
+      const data = this.format(event.detail.value);
 
-      this.setData({ currentValue: value });
+      this.setData({ currentValue: data.newValue });
 
-      this.emitChange(value);
+      this.emitChange(data);
 
       this.$emit('blur', {
         ...event.detail,
-        value,
+        value: +data.newValue,
       });
     },
 
     // filter illegal characters
-    filter(value) {
+    filter(value: string): string {
       value = String(value).replace(/[^0-9.-]/g, '');
 
       if (this.data.integer && value.indexOf('.') !== -1) {
@@ -137,20 +138,22 @@ VantComponent({
       return value;
     },
 
-    // limit value range
-    format(value) {
-      value = this.filter(value);
+    format(value: string) {
+      // filter illegal characters and format integer
+      const safeValue = this.filter(value);
 
       // format range
-      value = value === '' ? 0 : +value;
-      value = Math.max(Math.min(this.data.max, value), this.data.min);
+      const rangeValue = Math.max(
+        Math.min(this.data.max, +safeValue),
+        this.data.min
+      );
 
       // format decimal
-      if (isDef(this.data.decimalLength)) {
-        value = value.toFixed(this.data.decimalLength);
-      }
+      const newValue = isDef(this.data.decimalLength)
+        ? rangeValue.toFixed(this.data.decimalLength)
+        : String(rangeValue);
 
-      return value;
+      return { value, newValue };
     },
 
     onInput(event: WechatMiniprogram.Input) {
@@ -161,23 +164,20 @@ VantComponent({
         return;
       }
 
-      let formatted = this.filter(value);
-
-      // limit max decimal length
-      if (isDef(this.data.decimalLength) && formatted.indexOf('.') !== -1) {
-        const pair = formatted.split('.');
-        formatted = `${pair[0]}.${pair[1].slice(0, this.data.decimalLength)}`;
-      }
+      const formatted = this.format(value);
 
       this.emitChange(formatted);
     },
 
-    emitChange(value: string) {
+    emitChange(data: { value: string; newValue: string }) {
+      const { value, newValue } = data;
+
       if (!this.data.asyncChange) {
-        this.setData({ currentValue: value });
+        // fix when input 11. parsed to 11, unable to enter decimal
+        this.setData({ currentValue: +value === +newValue ? value : newValue });
       }
 
-      this.$emit('change', value);
+      this.$emit('change', +newValue);
     },
 
     onChange() {
@@ -190,7 +190,7 @@ VantComponent({
 
       const diff = type === 'minus' ? -this.data.step : +this.data.step;
 
-      const value = this.format(add(+this.data.currentValue, diff));
+      const value = this.format(String(add(+this.data.currentValue, diff)));
 
       this.emitChange(value);
       this.$emit(type);

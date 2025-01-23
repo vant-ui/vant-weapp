@@ -23,7 +23,6 @@ export function transition(showDefaultValue: boolean) {
       duration: {
         type: null,
         value: 300,
-        observer: 'observeDuration',
       },
       name: {
         type: String,
@@ -49,10 +48,28 @@ export function transition(showDefaultValue: boolean) {
           return;
         }
 
-        value ? this.enter() : this.leave();
+        value ? this.enureEnter() : this.enureLeave();
       },
 
-      enter() {
+      enureEnter() {
+        if (this.enterPromise) return;
+
+        this.enterPromise = new Promise((resolve) => this.enter(resolve));
+      },
+
+      enureLeave() {
+        const { enterPromise } = this;
+
+        if (!enterPromise) return;
+
+        enterPromise
+          .then(() => new Promise((resolve) => this.leave(resolve)))
+          .then(() => {
+            this.enterPromise = null;
+          });
+      },
+
+      enter(resolve: () => void) {
         const { duration, name } = this.data;
         const classNames = getClassNames(name);
         const currentDuration = isObj(duration) ? duration.enter : duration;
@@ -85,11 +102,12 @@ export function transition(showDefaultValue: boolean) {
 
             this.transitionEnded = false;
             this.setData({ classes: classNames['enter-to'] });
+            resolve();
           });
         });
       },
 
-      leave() {
+      leave(resolve: () => void) {
         if (!this.data.display) {
           return;
         }
@@ -119,7 +137,10 @@ export function transition(showDefaultValue: boolean) {
             }
 
             this.transitionEnded = false;
-            setTimeout(() => this.onTransitionEnd(), currentDuration);
+            setTimeout(() => {
+              this.onTransitionEnd();
+              resolve();
+            }, currentDuration);
 
             this.setData({ classes: classNames['leave-to'] });
           });

@@ -131,7 +131,7 @@ db.collection('region')
 | value | 当前选中的省市区`code` | _string_ | - |
 | title | 顶部栏标题 | _string_ | - |
 | area-list | 省市区数据，格式见下方 | _object_ | - |
-| columns-num | 省市区显示列数，3-省市区，2-省市，1-省 | _string \| number_ | `3` |
+| columns-num | 省市区显示列数，3-省市区，2-省市，1-省 | _number_ | `3` |
 | columns-placeholder | 列占位提示文字 | _string[]_ | `[]` |
 | loading | 是否显示加载状态 | _boolean_ | `false` |
 | item-height | 选项高度 | _number_ | `44` |
